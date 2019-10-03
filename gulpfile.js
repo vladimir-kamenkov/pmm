@@ -17,15 +17,15 @@ var gulp = require('gulp'),
 // paths
 var path = {
     build: {
-        js: 'assets/js/main.min.js',
-        css: 'assets/css/main.min.css'
+        //js: 'assets/js/main.min.js',
+        css: 'assets/css/'
     },
     src: {
-        js: 'assets/main.js',
-        style: 'assets/main.scss'
+        //js: 'assets/js/main.js',
+        style: 'assets/scss/main.scss'
     },
     watch: {
-        js: 'assets/js/*.js',
+        //js: 'assets/js/*.js',
         style: 'assets/scss/**/*.scss'
     }
 };
@@ -41,16 +41,16 @@ var config = {
 };
 
 //build
-function js(){
-    return gulp
-        .src(path.src.js)
-        .pipe(rigger())
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.js))
-        .pipe(browserSync.stream());
-}
+// function js(){
+//     return gulp
+//         .src(path.src.js)
+//         .pipe(rigger())
+//         .pipe(sourcemaps.init())
+//         .pipe(uglify())
+//         .pipe(sourcemaps.write())
+//         .pipe(gulp.dest(path.build.js))
+//         .pipe(browserSync.stream());
+// }
 
 function css(){
     return gulp
@@ -68,7 +68,7 @@ function css(){
 //watch
 gulp.task('watch', function(){
     gulp.watch(path.watch.style, css);
-    gulp.watch(path.watch.js, js);
+    //gulp.watch(path.watch.js, js);
 });
 
 
@@ -76,6 +76,6 @@ gulp.task('webserver', function () {
     browserSync(config);
 });
 
-gulp.task('build', gulp.parallel(js, css));
+gulp.task('build', gulp.parallel(css));
 
 gulp.task('default', gulp.parallel('build', 'webserver', 'watch'));
